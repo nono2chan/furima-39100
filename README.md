@@ -27,34 +27,19 @@
 | phone_number       | string | null: false                    |
 
 
-## category テーブル
-
-| Column  | Type       | Options        |
-| ------- | ---------- | ---------------|
-| name    | string     | null: false    |
-
 ## product テーブル
 
-| Column             | Type   | Options                        |
-| -------------------| ------ | ------------------------------ |
-| name               | string | null: false                    |
-| price              | integer| null: false                    |
-| description        | text   | null: false                    |
-| status             | integer| null: false                    |
-| size               | string | null: false                    |
-| shopping_cost      | integer| null: false                    |
-| shopping_days      | integer| null: false                    |
-| prefecture_id      | integer| null: false                    |
-
-## image テーブル
-
-| Column             | Type   | Options                        |
-| -------------------| ------ | ------------------------------ |
-| image              | string | null: false                    |
-| product_id         | integer| null: false,foreign_key: true  |
-
-## brand テーブル
-
-| Column             | Type   | Options                        |
-| -------------------| ------ | ------------------------------ |
-| name               | string | index: true                    |
+| Column             | Type     | Options                        |
+| -------------------| -------- | ------------------------------ |
+| name               | string   | null: false                    |
+| price              | integer  | null: false                    |
+| description        | text     | null: false                    |
+| status             | integer  | null: false                    |
+| size               | string   | null: false                    |
+| shopping_cost      | integer  | null: false                    |
+| shopping_days      | integer  | null: false                    |
+| prefecture_id      | integer  | null: false                    |
+| category_id        | integer  | null: false ,foreign_key: true |
+| brand_id           | integer  | null: false ,foreign_key: true |
+| shopping_id        | integer  | null: false ,foreign_key: true | 
+| user_id            | reference| null: false ,foreign_key: true |
