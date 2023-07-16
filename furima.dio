@@ -106,7 +106,7 @@
                 <mxCell id="170" value="building_name" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="152">
                     <mxGeometry y="146" width="210" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="171" value="phine_number" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="152">
+                <mxCell id="171" value="phone_number" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" vertex="1" parent="152">
                     <mxGeometry y="176" width="210" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="197" style="edgeStyle=none;rounded=0;html=1;exitX=0.508;exitY=1.156;exitDx=0;exitDy=0;entryX=0.995;entryY=0.067;entryDx=0;entryDy=0;startArrow=ERone;startFill=0;endArrow=ERone;endFill=0;strokeWidth=2;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="149" target="169">
