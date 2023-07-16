@@ -1,24 +1,84 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# テーブル設計
 
-Things you may want to cover:
+## users テーブル
 
-* Ruby version
+| Column             | Type   | Options                   |
+| ------------------ | ------ | ------------------------- |
+| nickname           | string | null: false               |
+| email              | string | null: false ,unique: true |
+| password           | string | null: false               |
+| encrypted_password | string | null: false               |
+| user_image         | string |                           |
+| family_name        | string | null: false               |
+| first_name         | string | null: false               |
+| family_name_kana   | string | null: false               |
+| first_name_kana    | string | null: false               |  
+| birth_day          | date   | null: false               |
+| introduction       | text   |                           |
 
-* System dependencies
+## destination テーブル
 
-* Configuration
+| Column             | Type   | Options                        |
+| -------------------| ------ | ------------------------------ |
+| user_id            | string | null: false ,foreign_key: true |
+| family_name        | string | null: false                    |
+| first_name         | string | null: false                    |
+| family_name_kana   | string | null: false                    |
+| first_name_kana    | string | null: false                    |
+| post_code          | string | null: false                    |
+| prefecture         | string | null: false null: false        |
+| prefecture         | string | null: false null: false        |
+| city               | string | null: false null: false        |
+| address            | string | null: false null: false        |
+| building_name      | string |                                |
+| phone_number       | string |                                |
 
-* Database creation
+## card テーブル
 
-* Database initialization
+| Column             | Type   | Options                        |
+| -------------------| ------ | ------------------------------ |
+| user_id            | integer| null: false, foreign_key: true |
+| customer_number    | string | null: false                    |
+| card_exp_month     | date   | null: false                    |
+| card_exp_year      | date   | null: false                    |
+| card_cvc           | string | null: false                    |
 
-* How to run the test suite
+## category テーブル
 
-* Services (job queues, cache servers, search engines, etc.)
+| Column  | Type       | Options        |
+| ------- | ---------- | ---------------|
+| name    | string     | null: false    |
+| ancestry| string     |                |
 
-* Deployment instructions
+## product テーブル
 
-* ...
+| Column             | Type   | Options                        |
+| -------------------| ------ | ------------------------------ |
+| name               | string | null: false                    |
+| price              | string | null: false                    |
+| description        | string | null: false                    |
+| status             | string | null: false                    |
+| size               | string | null: false                    |
+| shopping_cost      | string | null: false                    |
+| shopping_days      | string | null: false                    |
+| prefecture_id      | string | null: false                    |
+| judgement          | string |                                |
+| category_id        | integer| null: false ,foreign_key: true |
+| brand_id           | integer| null: false ,foreign_key: true |
+| shopping_id        | integer| null: false ,foreign_key: true |                  
+| user_id            | integer| null: false ,foreign_key: true |
+
+## image テーブル
+
+| Column             | Type   | Options                        |
+| -------------------| ------ | ------------------------------ |
+| image              | string | null: false                    |
+| product_id         | string | null: false,foreign_key: true  |
+
+## brand テーブル
+
+| Column             | Type   | Options                        |
+| -------------------| ------ | ------------------------------ |
+| name               | string | index: true                    |
