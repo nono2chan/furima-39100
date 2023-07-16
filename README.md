@@ -32,32 +32,26 @@
 | Column  | Type       | Options        |
 | ------- | ---------- | ---------------|
 | name    | string     | null: false    |
-| ancestry| string     |                |
 
 ## product テーブル
 
 | Column             | Type   | Options                        |
 | -------------------| ------ | ------------------------------ |
 | name               | string | null: false                    |
-| price              | string | null: false                    |
-| description        | string | null: false                    |
-| status             | string | null: false                    |
+| price              | integer| null: false                    |
+| description        | text   | null: false                    |
+| status             | integer| null: false                    |
 | size               | string | null: false                    |
-| shopping_cost      | string | null: false                    |
-| shopping_days      | string | null: false                    |
-| prefecture         | string | null: false                    |
-| judgement          | string |                                |
-| category_id        | integer| null: false ,foreign_key: true |
-| brand_id           | integer| null: false ,foreign_key: true |
-| shopping_id        | integer| null: false ,foreign_key: true |                  
-| user_id            | integer| null: false ,foreign_key: true |
+| shopping_cost      | integer| null: false                    |
+| shopping_days      | integer| null: false                    |
+| prefecture_id      | integer| null: false                    |
 
 ## image テーブル
 
 | Column             | Type   | Options                        |
 | -------------------| ------ | ------------------------------ |
 | image              | string | null: false                    |
-| product_id         | string | null: false,foreign_key: true  |
+| product_id         | integer| null: false,foreign_key: true  |
 
 ## brand テーブル
 
