@@ -29,11 +29,10 @@
 | address            | string    | null:false                    |
 | building_name      | string    |                               |
 | phone_number       | string    | null:false                    |
-| purchase_id        | references| null:false ,foreign_key: true |
+| purchase           | references| null:false ,foreign_key: true |
 
 ### Association
-- has_one :user
-- has_one :product
+- has_one :purchase
 
 ## products テーブル
 
@@ -46,8 +45,8 @@
 | category_id        | integer   | null: false                    |
 | prefecture_id      | integer   | null: false                    |
 | shopping_cost_id   | integer   | null: false                    |
-| shopping_days_id   | integer   | null: false                    |
-| user_id            | references| null: false ,foreign_key: true |
+| shopping_day_id    | integer   | null: false                    |
+| user               | references| null: false ,foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -56,9 +55,11 @@
 ## purchases テーブル
 | Column             | Type      | Options                        |
 | -------------------| --------- | ------------------------------ |
-| users_id           | references| null: false ,foreign_key: true |
-| product_id         | references| null: false                    |
+| users              | references| null: false ,foreign_key: true |
+| product            | references| null: false                    |
+| destination        | references| null: false ,foreign_key: true |
 
 ### Association
 - belongs_to :user
 - belongs_to :product
+- belongs_to :destination
