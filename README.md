@@ -55,7 +55,7 @@
 ## purchases テーブル
 | Column             | Type      | Options                        |
 | -------------------| --------- | ------------------------------ |
-| users              | references| null: false ,foreign_key: true |
+| user               | references| null: false ,foreign_key: true |
 | product            | references| null: false                    |
 | destination        | references| null: false ,foreign_key: true |
 
