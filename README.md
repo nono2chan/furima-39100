@@ -18,52 +18,47 @@
 ### Association
 - has_many :products
 - has_many :purchaces
-- has_one  :distination
 
-## destination テーブル
+## destinations テーブル
 
-| Column             | Type   | Options                        |
-| -------------------| ------ | ------------------------------ |
-| post_code          | string | null: false                    |
-| prefecture         | string | null: false                    |
-| city               | string | null: false                    |
-| address            | string | null: false                    |
-| building_name      | string |                                |
-| phone_number       | string | null: false                    |
-| purchase_id        | string | null: false                    |
-
-### Association
-- has_one :users
-- has_one :products
-
-## product テーブル
-
-| Column             | Type     | Options                        |
-| -------------------| -------- | ------------------------------ |
-| name               | string   | null: false                    |
-| price              | integer  | null: false                    |
-| description        | text     | null: false                    |
-| status             | integer  | null: false                    |
-| size               | string   | null: false                    |
-| shopping_cost      | integer  | null: false                    |
-| shopping_days      | integer  | null: false                    |
-| prefecture_id      | integer  | null: false                    |
-| category_id        | integer  | null: false ,foreign_key: true |
-| brand              | integer  | null: false ,foreign_key: true |
-| shopping           | integer  | null: false ,foreign_key: true | 
-| user               | reference| null: false ,foreign_key: true |
+| Column             | Type      |Options                        |
+| -------------------| --------- | ----------------------------- |
+| post_code          | string    | null:false                    |
+| prefecture_id      | integer   | null:false                    |
+| city               | string    | null:false                    |
+| address            | string    | null:false                    |
+| building_name      | string    |                               |
+| phone_number       | string    | null:false                    |
+| purchase_id        | references| null:false ,foreign_key: true |
 
 ### Association
-- has_many :users
-- has_one  :purchaces
-- has_one  :destination
+- has_one :user
+- has_one :product
+
+## products テーブル
+
+| Column             | Type     |Options                          |
+| -------------------| --------- | ------------------------------ |
+| name               | string    | null: false                    |
+| price              | integer   | null: false                    |
+| description        | text      | null: false                    |
+| status_id          | integer   | null: false                    |
+| category_id        | integer   | null: false                    |
+| prefecture_id      | integer   | null: false                    |
+| shopping_cost_id   | integer   | null: false                    |
+| shopping_days_id   | integer   | null: false                    |
+| user_id            | references| null: false ,foreign_key: true |
+
+### Association
+- belongs_to :user
+- has_one    :purchace
 
 ## purchases テーブル
-| Column             | Type     | Options                        |
-| -------------------| -------- | ------------------------------ |
-| users_id           | string   | null: false ,foreign_key: true |
-| product_id         | integer  | null: false                    |
+| Column             | Type      | Options                        |
+| -------------------| --------- | ------------------------------ |
+| users_id           | references| null: false ,foreign_key: true |
+| product_id         | references| null: false                    |
 
 ### Association
-- belongs_to :users
-- belongs_to :products
+- belongs_to :user
+- belongs_to :product
