@@ -32,7 +32,7 @@
 | purchase           | references| null:false ,foreign_key: true |
 
 ### Association
-- has_one :purchase
+- belongs_to :purchase
 
 ## products テーブル
 
@@ -62,4 +62,4 @@
 ### Association
 - belongs_to :user
 - belongs_to :product
-- belongs_to :destination
+- has_one :destination
