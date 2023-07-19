@@ -3,23 +3,28 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  # devise :database_authenticatable, :registerable,
-        #  :recoverable, :rememberable, :validatable
-  # validates :profile, presence: true
-  # validates :occupation, presence: true
-  # validates :position, presence: true
-  # has_many :prototype, dependent: :destroy
-  # has_many :comments, dependent: :destroy
+
   validates :nickname, presence: true
-  validates :email, presence: true
-  validates :password, presence: true
-  validates :encrypted_password, presence: true
-  validates :family_name, presence: true
-  validates :first_name, presence: true
-  validates :family_name_kana, presence: true
-  validates :first_name_kana, presence: true
+  # validates :email, presence: true
+  # validates :password, presence: true
+  PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
+  validates_format_of :password, with: PASSWORD_REGEX, message: 'には英字と数字の両方を含めて設定してください' 
+  # validates :encrypted_password, presence: true
+  # validates :family_name, presence: true
+  # validates :first_name, presence: true
+  # validates :family_name_kana, presence: true
+  # validates :first_name_kana, presence: true
   validates :birth_day, presence: true
+
+  with_options presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: '全角文字を使用してください' } do
+    validates :first_name
+    validates :family_name
+  end
+  with_options presence: true, format: { with: /\A[ァ-ヶ]+\z/, message: '全角（カタカナ）文字を使用してください' } do
+    validates :first_name_kana
+    validates :family_name_kana
+  end
+  
+
 
 end
