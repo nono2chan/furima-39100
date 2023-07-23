@@ -1,4 +1,9 @@
 require 'rails_helper'
+RSpec.describe Item, type: :model do
+  before do
+    @item = FactoryBot.build(:item)
+    @item.image = fixture_file_upload('20200415_kouzu-photo_13-670x443.jpeg')
+  end
 
   describe '商品出品' do
     context '商品出品がうまくいくとき' do
@@ -66,7 +71,12 @@ require 'rails_helper'
       it 'priceに半角数字以外が含まれている場合は出品できないこと' do
         @item.price =  '100aa'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price must be harf width number')
+        expect(@item.errors.full_messages).to include('Price is not a number')
+      end
+      it 'priceが小数の場合出品できないこと' do
+        @item.price = '300.5'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price must be an integer')
       end
       it "genre_idの値が、id: 0,name:'--'の時は保存できないこと" do
         @item.genre_id = [0]
@@ -92,11 +102,13 @@ require 'rails_helper'
         @item.days_id = [0]
         @item.valid?
         expect(@item.errors.full_messages).to include("Days can't be blank", 'Days is not a number')
-      it "userが紐づいていない場合は出品できない" do
-        item = FactoryBot.build(:item, user: nil) 
-        @item.vaild?
-        expect(@item.errors.full_messages).to include("User must be log in")
-       end
+      end
+      it 'userが紐づいていない場合は出品できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include('User must exist')   
+      end
+  
     end
   end
 end
