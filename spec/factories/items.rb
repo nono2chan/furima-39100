@@ -3,8 +3,8 @@ FactoryBot.define do
     association :user
 
     name   { Faker::Name.initials(number: 2) }
-    price  { 300 }
-    text   { 美品 }
+    price  { '1000' }
+    text   { '美品' }
     user_id { @user }
     genre_id { 1 }
     quality_id { 1 }
