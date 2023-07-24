@@ -3,7 +3,7 @@ class Genre < ActiveHash::Base
   has_one :item
 
   self.data = [
-    { id: 0, name: '--' },
+    { id: 0, name: '---' },
     { id: 1, name: 'レディース' },
     { id: 2, name: 'メンズ' },
     { id: 3, name: 'ベビー・キッズ' },

@@ -77,30 +77,30 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include('Price must be an integer')
       end
-      it "genre_idの値が、id: 0,name:'--'の時は保存できないこと" do
-        @item.genre_id = [0]
+      it "genre_idの値が、id: 0,name:'---'の時は保存できないこと" do
+        @item.genre_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Genre can't be blank", 'Genre is not a number')
+        expect(@item.errors.full_messages).to include("Genre must be other than 0")
       end
-      it "quality_idの値が、id:0,name:'--'の時は保存できないこと" do
-        @item.quality_id = [0]
+      it "quality_idの値が、id:0,name:'---'の時は保存できないこと" do
+        @item.quality_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Quality can't be blank", 'Quality is not a number')
+        expect(@item.errors.full_messages).to include("Quality must be other than 0")
       end
-      it "payment_idの値が、id:0,name:'--'の時は保存できないこと" do
-        @item.payment_id = [0]
+      it "payment_idの値が、id:0,name:'---'の時は保存できないこと" do
+        @item.payment_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Payment can't be blank", 'Payment is not a number')
+        expect(@item.errors.full_messages).to include("Payment must be other than 0")
       end
-      it "prefecture_idの値が、id:0,name:'--'の時は保存できないこと" do
-        @item.prefecture_id = [0]
+      it "prefecture_idの値が、id:0,name:'---'の時は保存できないこと" do
+        @item.prefecture_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Prefecture can't be blank", 'Prefecture is not a number')
+        expect(@item.errors.full_messages).to include("Prefecture must be other than 0")
       end
-      it "days_idの値が、id:0,name:'--'の時は保存できないこと" do
-        @item.days_id = [0]
+      it "days_idの値が、id:0,name:'---'の時は保存できないこと" do
+        @item.days_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Days can't be blank", 'Days is not a number')
+        expect(@item.errors.full_messages).to include("Days must be other than 0")
       end
       it 'userが紐づいていない場合は出品できない' do
         @item.user = nil
