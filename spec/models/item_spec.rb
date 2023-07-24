@@ -13,7 +13,7 @@ RSpec.describe Item, type: :model do
   
     context '商品出品がうまくいかないとき' do
       it 'nameが空では保存できないこと' do
-        @item.name = ''
+        @item.name = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Name can't be blank")
       end
