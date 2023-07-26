@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new]
-  before_action :set_item, only: [:edit, :show, :update, :destroy]
+  # before_action : only: [:edit, :show, :update, :destroy]
 
   def index
      @items = Item.order('created_at DESC')
@@ -21,7 +21,11 @@ class ItemsController < ApplicationController
       render :new
     end
   end
-  
+ 
+  def show
+    @item = Item.joins(:user).find(params[:id])
+  end
+
   private
 
   def item_params
