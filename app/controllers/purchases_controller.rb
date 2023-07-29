@@ -8,7 +8,7 @@ class PurchasesController < ApplicationController
 
   def create
     @item = Item.find(params[:item_id])
-    # binding.pry
+    binding.pry
     @purchase_destination = PurchaseDestination.new(purchase_params)
     
     if @purchase_destination.valid?
@@ -20,7 +20,7 @@ class PurchasesController < ApplicationController
   end
 
   def purchase_params
-    params.require(:purchase_destination).permit(:card_number,:card_exp_month,:card_exp_year, :card_cvc ,:post_code, :prefecture_id, :city, :address, :building_name, :phone_number, :item_id ).merge(user_id: current_user.id, item_id: params[:item_id])
+    params.require(:purchase_destination).permit(:params[:item_id],:card_number,:card_exp_month,:card_exp_year, :card_cvc ,:post_code, :prefecture_id, :city, :address, :building_name, :phone_number, :item_id ).merge(user_id: current_user.id, item_id: params[:item_id])
   end
 
 end

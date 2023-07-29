@@ -14,6 +14,10 @@ RSpec.describe PurchaseDestination, type: :model do
       it 'すべての情報があれば登録できる' do
         expect(@purchase_destination).to be_valid
       end
+      it 'building_nameがなくても保存できる' do
+        @purchase_destination.building_name = nil
+        expect(@purchase_destination).to be_valid
+      end
     end
 
     context '商品出品がうまくいかないとき' do
@@ -103,6 +107,23 @@ RSpec.describe PurchaseDestination, type: :model do
         expect(@purchase_destination.errors.full_messages).to include("Phone number は10桁以上11桁以内の半角数字で入力してください")
       end
 
+      it 'item_idが空では保存できないこと' do
+        @purchase_destination.item_id = nil
+        @purchase_destination.valid?
+        expect(@purchase_destination.errors.full_messages).to include("Item can't be blank")
+      end
+
+      it 'user_idが空では保存できないこと' do
+        @purchase_destination.user_id = nil
+        @purchase_destination.valid?
+        expect(@purchase_destination.errors.full_messages).to include("User can't be blank")
+      end
+
+      # it 'tokenが空では保存できないこと' do
+      #   @purchase_destination.token = nil
+      #   @purchase_destination.valid?
+      #   expect(@purchase_destination.errors.full_messages).to include("Token can't be blank")
+      # end
     end
 
   end
