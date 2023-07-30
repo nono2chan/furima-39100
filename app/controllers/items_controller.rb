@@ -3,7 +3,8 @@ class ItemsController < ApplicationController
   before_action :get_item, only: [:edit, :show, :update]
 
   def index
-     @items = Item.order('created_at DESC')
+    @items = Item.includes(:purchase).order('items.created_at DESC')
+    #  binding.pry
   end
 
   def new
@@ -22,9 +23,10 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if @item.user.id != current_user.id
+    if @item.user.id != current_user.id || @item.purchase != nil 
       redirect_to root_path
     end
+
   end
 
   def update
@@ -45,6 +47,6 @@ class ItemsController < ApplicationController
   end
 
   def get_item
-    @item = Item.joins(:user).find(params[:id])
+    @item = Item.joins(:user).includes(:purchase).find(params[:id])
   end
 end

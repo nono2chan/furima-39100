@@ -6,7 +6,6 @@ RSpec.describe PurchaseDestination, type: :model do
     user = FactoryBot.create(:user)
     item = FactoryBot.create(:item, user: user)
     @purchase_destination = FactoryBot.build(:purchase_destination, item_id: item.id, user_id: user.id) 
-    #, user_id: user.id, item_id: item.id)
   end
 
   describe '商品購入' do
@@ -21,37 +20,6 @@ RSpec.describe PurchaseDestination, type: :model do
     end
 
     context '商品出品がうまくいかないとき' do
-      it 'card_numberが空では保存できないこと' do
-        @purchase_destination.card_number = nil
-        @purchase_destination.valid?
-        expect(@purchase_destination.errors.full_messages).to include("Card number can't be blank")
-      end
-
-      it 'card_exp_monthが空では保存できないこと' do
-        @purchase_destination.card_exp_month = nil
-        @purchase_destination.valid?
-        expect(@purchase_destination.errors.full_messages).to include("Card exp month can't be blank")
-      end
-
-      it 'card_exp_yearが空では保存できないこと' do
-        @purchase_destination.card_exp_year = nil
-        @purchase_destination.valid?
-        expect(@purchase_destination.errors.full_messages).to include("Card exp year can't be blank")
-      end
-
-      it 'card有効期限が今日より未来の日付ではないと保存できないこと' do
-        today = Date.today
-        @purchase_destination.card_exp_year = today.prev_year.strftime("%y")
-        @purchase_destination.card_exp_month = today.prev_year.strftime("%m")
-        @purchase_destination.valid?
-        expect(@purchase_destination.errors.full_messages).to include("クレジットカードの有効期限は未来の日付である必要があります")
-      end
-      
-      it 'card_cvcが空では保存できないこと' do
-        @purchase_destination.card_cvc = nil
-        @purchase_destination.valid?
-        expect(@purchase_destination.errors.full_messages).to include("Card cvc can't be blank")
-      end
 
       it 'post_codeが空では保存できないこと' do
         @purchase_destination.post_code = nil
@@ -119,11 +87,11 @@ RSpec.describe PurchaseDestination, type: :model do
         expect(@purchase_destination.errors.full_messages).to include("User can't be blank")
       end
 
-      # it 'tokenが空では保存できないこと' do
-      #   @purchase_destination.token = nil
-      #   @purchase_destination.valid?
-      #   expect(@purchase_destination.errors.full_messages).to include("Token can't be blank")
-      # end
+      it 'tokenが空では保存できないこと' do
+        @purchase_destination.token = nil
+        @purchase_destination.valid?
+        expect(@purchase_destination.errors.full_messages).to include("Token can't be blank")
+      end
     end
 
   end

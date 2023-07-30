@@ -2,10 +2,7 @@ FactoryBot.define do
   factory :purchase_destination do
     association :user
     association :item
-    card_number { '4242424242424242' }
-    card_exp_month { 8 }
-    card_exp_year { 27 }
-    card_cvc { '123' }
+    token { 'tok_abcdefghijk00000000000000000' }
     post_code { '123-4567' }
     prefecture_id { 1 }
     city { '横浜市緑区' }
