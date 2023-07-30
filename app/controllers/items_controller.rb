@@ -1,10 +1,9 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit]
-  before_action :get_item, only: [:edit, :show, :update]
+  before_action :set_item, only: [:edit, :show, :update, :destroy]
 
   def index
     @items = Item.includes(:purchase).order('items.created_at DESC')
-    #  binding.pry
   end
 
   def new
@@ -46,7 +45,7 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name, :image, :price, :text, :genre_id, :quality_id, :payment_id, :prefecture_id, :days_id).merge(user_id: current_user.id)
   end
 
-  def get_item
+  def set_item
     @item = Item.joins(:user).includes(:purchase).find(params[:id])
   end
 end

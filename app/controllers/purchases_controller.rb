@@ -9,7 +9,6 @@ class PurchasesController < ApplicationController
     if Purchase.find_by(item_id: @item.id)
       redirect_to root_path
     end
-    # binding.pry
     
     @purchase_destination = PurchaseDestination.new
     
