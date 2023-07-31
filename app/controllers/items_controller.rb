@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit]
-  before_action :set_item, only: [:edit, :show, :update, :destroy]
+  before_action :get_item, only: [:edit, :show, :update]
 
   def index
     @items = Item.includes(:purchase).order('items.created_at DESC')
@@ -13,7 +13,6 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
 
-    # binding.pry
     if @item.save
       redirect_to root_path
     else
@@ -26,6 +25,9 @@ class ItemsController < ApplicationController
       redirect_to root_path
     end
 
+    if @item.purchase != nil 
+      redirect_to root_path
+    end
   end
 
   def update
@@ -45,7 +47,7 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name, :image, :price, :text, :genre_id, :quality_id, :payment_id, :prefecture_id, :days_id).merge(user_id: current_user.id)
   end
 
-  def set_item
+  def get_item
     @item = Item.joins(:user).includes(:purchase).find(params[:id])
   end
 end
