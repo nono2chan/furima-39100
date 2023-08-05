@@ -25,9 +25,6 @@ class ItemsController < ApplicationController
       redirect_to root_path
     end
 
-    if @item.purchase != nil 
-      redirect_to root_path
-    end
   end
 
   def update
